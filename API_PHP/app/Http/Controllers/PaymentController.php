@@ -7,8 +7,8 @@ use App\Models\Payment; // Certifique-se de que você tem um modelo Payment
 use Illuminate\Support\Facades\Validator;
 use Exception;
 
-class PaymentController extends Controller
-{
+class PaymentController extends Controller{
+    
     // Método para listar todos os pagamentos
     public function index(){
         try {
