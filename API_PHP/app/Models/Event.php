@@ -26,4 +26,8 @@ class Event extends Model{
     public function organizer(){
         return $this->belongsTo(User::class, 'organizador');
     }
+
+    public function subscriptions() {
+        return $this->hasMany(Subscriber::class);
+    }
 }

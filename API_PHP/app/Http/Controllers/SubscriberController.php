@@ -11,7 +11,7 @@ class SubscriberController extends Controller{
    
     public function index(){
         try{
-            $subscribers = Subscriber::with(['users', 'event'])->get();
+            $subscribers = Subscriber::with(['user', 'event'])->get();
             return response()->json($subscribers);
         }catch(Exception $e){
             return response()->json(['error'=> 'Server error'], 500);
@@ -45,7 +45,7 @@ class SubscriberController extends Controller{
     public function show($id)
     {
         try {
-            $subscriber = Subscriber::with(['users', 'event'])->findOrFail($id);
+            $subscriber = Subscriber::with(['user', 'event'])->findOrFail($id);
             return response()->json($subscriber);
         } catch (Exception $e) {
             return response()->json(['error' => 'Subscriber not found'], 404);
@@ -77,9 +77,7 @@ class SubscriberController extends Controller{
         }
     }
 
-    /**
-     * Remove the specified subscriber from storage.
-     */
+   
     public function destroy($id)
     {
         try {

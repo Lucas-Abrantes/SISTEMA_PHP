@@ -81,13 +81,21 @@ class UserController extends Controller{
     }
 
     // metodo para excluir um usuario
-    public function destroy($id){
+    // Em UserController.php
+    public function destroy($id)
+    {
+        $user = User::find($id);
+
+        if (!$user) {
+            return response()->json(['error' => 'User not found'], 404);
+        }
+
         try {
-            $user = User::findOrFail($id);
             $user->delete();
-            return response()->json(['message' => 'User deleted successfully']);
-        } catch (Exception $e) {
-            return response()->json(['error' => 'User not found or delete failed'], 404);
+            return response()->json(['success' => 'User deleted successfully']);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'User not found or delete failed'], 400);
         }
     }
+
 }
