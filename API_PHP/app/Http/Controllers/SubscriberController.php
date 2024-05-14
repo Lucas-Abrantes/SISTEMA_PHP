@@ -11,7 +11,7 @@ class SubscriberController extends Controller{
    
     public function index(){
         try{
-            $subscribers = Subscriber::with(['user', 'event'])->get();
+            $subscribers = Subscriber::with('event' )->get();
             return response()->json($subscribers);
         }catch(Exception $e){
             return response()->json(['error'=> 'Server error'], 500);
@@ -22,8 +22,7 @@ class SubscriberController extends Controller{
  
     public function store(Request $request){
         $validator = Validator::make($request->all(), [
-            'usuario_id' => 'required|exists:usuarios,id',
-            'evento_id' => 'required|exists:events,id',
+            'event_id' => 'required|exists:events,id',
             'status' => 'required|boolean'
         ]);
 
@@ -45,7 +44,7 @@ class SubscriberController extends Controller{
     public function show($id)
     {
         try {
-            $subscriber = Subscriber::with(['user', 'event'])->findOrFail($id);
+            $subscriber = Subscriber::with('event')->findOrFail($id);
             return response()->json($subscriber);
         } catch (Exception $e) {
             return response()->json(['error' => 'Subscriber not found'], 404);
@@ -61,8 +60,7 @@ class SubscriberController extends Controller{
             $subscriber = Subscriber::findOrFail($id);
 
             $validator = Validator::make($request->all(), [
-                'usuario_id' => 'exists:usuarios,id',
-                'evento_id' => 'exists:events,id',
+                'event_id' => 'exists:events,id',
                 'status' => 'boolean'
             ]);
 

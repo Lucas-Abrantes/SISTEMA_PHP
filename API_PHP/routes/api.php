@@ -5,9 +5,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SubscriberController;
-
 use Illuminate\Support\Facades\Route;
-
 
 // Rotas para Usuários
 Route::prefix('users')
@@ -20,6 +18,7 @@ Route::prefix('users')
         Route::delete('destroy/{id}', [UserController::class, 'destroy'])->name('destroy');
     });
 
+
 // Rotas para Eventos
 Route::prefix('events')
     ->name('events.')
@@ -30,6 +29,7 @@ Route::prefix('events')
         Route::post('store', [EventController::class, 'store'])->name('store');
         Route::delete('destroy/{id}', [EventController::class, 'destroy'])->name('destroy');
     });
+
 
 // Rotas para Inscrições
 Route::prefix('subscribers')
@@ -42,6 +42,7 @@ Route::prefix('subscribers')
         Route::delete('destroy/{id}', [SubscriberController::class, 'destroy'])->name('destroy');
     });
 
+    
 // Rotas para Pagamentos
 Route::prefix('payments')
     ->name('payments.')
@@ -52,7 +53,6 @@ Route::prefix('payments')
         Route::post('store', [PaymentController::class, 'store'])->name('store');
         Route::delete('destroy/{id}', [PaymentController::class, 'destroy'])->name('destroy');
     });
-
 
 
 Route::post('login', [AuthController::class, 'login']);
