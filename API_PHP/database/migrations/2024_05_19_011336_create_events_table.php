@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('description');
             $table->timestamp('data');
             $table->string('location');
-            $table->foreignId('organizador')->constrained('users');
+            $table->foreignId('organizador')->constrained('type_users');
             $table->integer('capacity');
             $table->decimal('price', 8, 2);
             $table->timestamps();

@@ -1,13 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\User; // Ensure you have a User model
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Exception;
-
 
 class UserController extends Controller{
     
@@ -82,8 +80,7 @@ class UserController extends Controller{
 
     // metodo para excluir um usuario
     // Em UserController.php
-    public function destroy($id)
-    {
+    public function destroy($id){
         $user = User::find($id);
 
         if (!$user) {

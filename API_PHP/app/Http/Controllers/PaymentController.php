@@ -1,9 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-use App\Models\Payment; // Certifique-se de que você tem um modelo Payment
+use App\Models\Payment; 
 use Illuminate\Support\Facades\Validator;
 use Exception;
 
@@ -27,11 +26,9 @@ class PaymentController extends Controller{
             'status' => 'required|string|max:255',
             'payment_date' => 'required|date'
         ]);
-
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
         }
-
         try {
             $payment = Payment::create([
                 'value' => $request->value,

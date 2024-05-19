@@ -29,7 +29,6 @@ class SubscriberController extends Controller{
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
         }
-
         try {
             $subscriber = Subscriber::create($request->all() + ['subscribe_data' => now()]);
             return response()->json($subscriber, 201);
@@ -38,11 +37,8 @@ class SubscriberController extends Controller{
         }
     }
 
-    /**
-     * Display the specified subscriber.
-     */
-    public function show($id)
-    {
+
+    public function show($id){
         try {
             $subscriber = Subscriber::with('event')->findOrFail($id);
             return response()->json($subscriber);
@@ -51,14 +47,10 @@ class SubscriberController extends Controller{
         }
     }
 
-    /**
-     * Update the specified subscriber in storage.
-     */
-    public function update(Request $request, $id)
-    {
+  
+    public function update(Request $request, $id){
         try {
             $subscriber = Subscriber::findOrFail($id);
-
             $validator = Validator::make($request->all(), [
                 'event_id' => 'exists:events,id',
                 'status' => 'boolean'
@@ -67,7 +59,6 @@ class SubscriberController extends Controller{
             if ($validator->fails()) {
                 return response()->json($validator->errors(), 400);
             }
-
             $subscriber->update($request->all());
             return response()->json($subscriber);
         } catch (Exception $e) {
@@ -76,8 +67,7 @@ class SubscriberController extends Controller{
     }
 
    
-    public function destroy($id)
-    {
+    public function destroy($id){
         try {
             $subscriber = Subscriber::findOrFail($id);
             $subscriber->delete();

@@ -7,8 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Exception;
 
-class EventController extends Controller
-{
+class EventController extends Controller{
     public function index(){
         try{
             $events = Event::all();
@@ -26,7 +25,7 @@ class EventController extends Controller
             'description' => 'required|string',
             'data' => 'required|date',
             'location' => 'required|string|max:255',
-            'organizador' => 'required|exists:users,id',
+            'organizador' => 'required|exists:type_users,id',
             'capacity' => 'required|integer',
             'price' => 'required|numeric'
         ]);
@@ -44,8 +43,7 @@ class EventController extends Controller
     }
 
  
-    public function show($id)
-    {
+    public function show($id){
         try {
             $event = Event::findOrFail($id);
             return response()->json($event);
@@ -64,7 +62,7 @@ class EventController extends Controller
                 'description' => 'string',
                 'data' => 'date',
                 'location' => 'string|max:255',
-                'organizador' => 'exists:users,id',
+                'organizador' => 'exists:type_users,id',
                 'capacity' => 'integer',
                 'price' => 'numeric'
             ]);
