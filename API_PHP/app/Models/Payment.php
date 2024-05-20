@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 class Payment extends Model{
 
     protected $table = 'payments';
-
     protected $fillable = [
         'value',
         'payment_method',

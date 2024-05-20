@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Models\User; // Ensure you have a User model
+use App\Models\User; 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Exception;
@@ -32,7 +32,6 @@ class UserController extends Controller{
         if ($validator->fails()) {
             return response()->json($validator->errors(), 400);
         }
-
         try {
             $user = User::create([
                 'name' => $request->name,
@@ -82,11 +81,9 @@ class UserController extends Controller{
     // Em UserController.php
     public function destroy($id){
         $user = User::find($id);
-
         if (!$user) {
             return response()->json(['error' => 'User not found'], 404);
         }
-
         try {
             $user->delete();
             return response()->json(['success' => 'User deleted successfully']);
@@ -94,5 +91,4 @@ class UserController extends Controller{
             return response()->json(['error' => 'User not found or delete failed'], 400);
         }
     }
-
 }
