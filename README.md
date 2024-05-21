@@ -1,5 +1,8 @@
 # SISTEMA_API_PHP
 
+### Comado para inicializar o projeto
+
+    php artisan serve
 
 FUNCIONALIDADES DO SISTEMA:
 
